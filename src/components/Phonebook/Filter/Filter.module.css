@@ -1,0 +1,22 @@
+.label {
+  font-weight: 600;
+  font-size: 20px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  font-weight: 500;
+  font-size: 20px;
+
+  width: 500px;
+  height: 20px;
+
+  border-radius: 20px;
+
+  padding: 10px;
+  padding-left: 17px;
+
+  margin-top: 10px;
+}
