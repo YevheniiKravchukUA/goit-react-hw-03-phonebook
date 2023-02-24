@@ -4,11 +4,26 @@ import { PhonebookForm } from 'components/Phonebook/PhonebookForm/PhonebookForm'
 import { ContactsList } from 'components/Phonebook/ContactsList/ContactsList';
 import { Filter } from 'components/Phonebook/Filter/Filter';
 
+import { getContactsFromLocaleStorage } from 'js/utils/getContactsFromLocaleStorage';
+import { setContactsToLocaleStorage } from 'js/utils/setContactsToLocalStorage';
+
 export class Phonebook extends Component {
   state = {
     contacts: [],
     filter: '',
   };
+
+  componentDidMount() {
+    if (window.localStorage.contacts) {
+      this.setState({ contacts: getContactsFromLocaleStorage() });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.contacts.length !== this.state.contacts.length) {
+      setContactsToLocaleStorage(this.state.contacts);
+    }
+  }
 
   addContact = contact => {
     const itsAlreadyAdded = this.state.contacts.find(
